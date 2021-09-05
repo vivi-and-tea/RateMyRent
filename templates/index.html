@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <p> Testing a template. Reload?
+      <br><br>
+      <p>{% for city in places %}
+      <p>{{ city.city }}
+      <p>{{ city.oneroom }}
+
+      {% endfor %}
+
+
+      <!-- <img src="{{ url_for('static', filename='watercolorav.png') }}"> -->
+
+{% endblock %}
