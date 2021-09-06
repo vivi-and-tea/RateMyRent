@@ -35,43 +35,35 @@ def home():
 
 @app.route("/recommend")
 def recommend():
-    salary = 40
-    room_type = "twok"
+    salary = 20
+    room_type = "onek"
     list = []
-    places = db.session.query(Places).all()
-    print(places)
-    print("Heloo")
+    places= db.session.query(Places).all()
+
+    def place_finder(place):
+        if room_type == "oneroom":
+            return place.oneroom
+
+        elif room_type == "onek":
+            return place.onek
+
+
     for place in places:
-        if place.twok / salary < .5:
-            percent = (place.twok / salary)
-            list.append({'City': place.city, 'Rent': place.twok, 'Percent': percent})
+
+        the_room = place_finder(place)
+
+        if the_room / salary < .5:
+            percent = the_room / salary
+            list.append({'City': place.city, 'Rent': the_room, 'Percent': percent})
 
         else:
             pass
+
     mini = min(list, key=lambda x:x['Percent'])
     print(mini)
     return render_template('recommend.html', places=places, df=list, mini=mini)
 
-# @app.route("/recommend")
-# def recommend():
-#     salary = 40
-#     room_type = "twok"
-#     col_names =  ['City', 'Rent', 'Percent']
-#     df  = pd.DataFrame(columns = col_names)
-#     places = db.session.query(Places).all()
-#     print(places)
-#     print("Heloo")
-#     for place in places:
-#         if place.twok / salary < .5:
-#             percent = (place.twok / salary)
-#             # df.append({'City' : f'{place.city}', 'Rent' : 'place.twok', 'Percent' : 'percent' }, ignore_index=True)
-#             df.append({'City': 'blah'},ignore_index=True)
-#             print(df)
-#             print("hey")
-#         else:
-#             pass
-#
-#     return render_template('recommend.html', places=places, df=df)
+
 
 
 if __name__ == "__main__":
