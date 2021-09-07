@@ -43,25 +43,40 @@ def recommend():
     def place_finder(place):
         if room_type == "oneroom":
             return place.oneroom
-
         elif room_type == "onek":
             return place.onek
-
+        elif room_type == "twok":
+            return place.twok
 
     for place in places:
 
         the_room = place_finder(place)
+        percent = int((the_room / salary) * 100)
 
-        if the_room / salary < .5:
-            percent = the_room / salary
+
+        if percent < 50 and percent > 20:
             list.append({'City': place.city, 'Rent': the_room, 'Percent': percent})
 
         else:
             pass
 
-    mini = min(list, key=lambda x:x['Percent'])
-    print(mini)
-    return render_template('recommend.html', places=places, df=list, mini=mini)
+    message = ""
+    mini = ""
+    if len(list):
+        mini = min(list, key=lambda x:x['Percent'])
+    else:
+        message="Sorry, we couldn't find a good fit. Try changing your preferred room size for different options."
+
+    context = {}
+    context['places'] = places
+    context['room_type'] = room_type
+    context['salary'] = salary
+    if mini:
+        context['mini'] = mini
+    if message:
+        context['message'] = message
+
+    return render_template('recommend.html', **context)
 
 
 

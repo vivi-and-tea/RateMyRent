@@ -4,10 +4,17 @@
 
     <p> Hello There.
       <br><br>
+
+{% if mini %}
 <p>I recommend:
 <p>{{ mini['City'] }}
 <p> {{ mini['Rent'] }}
-<p> {{ mini['Percent'] }}
+<p> {{ mini['Percent'] }}%
+
+{% elif message %}
+{{ message }}
+
+{% endif %}
 
       <!-- <img src="{{ url_for('static', filename='watercolorav.png') }}"> -->
 
