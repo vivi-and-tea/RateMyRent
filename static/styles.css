@@ -1,0 +1,141 @@
+
+.animate-in {
+    -webkit-animation: fadeIn .7s ease-in;
+    animation: fadeIn .7s ease-in;
+}
+
+.animate-out {
+    -webkit-transition: opacity .7s;
+    transition: opacity .7s;
+    opacity: 0;
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+:root {
+  --brandColor: hsl(166, 67%, 51%);
+  --background: rgb(247, 247, 247);
+  --textDark: hsla(0, 0%, 0%, 0.66);
+  --textLight: hsla(0, 0%, 0%, 0.33);
+}
+
+
+
+body {
+  background: var(--background);
+  height: 100vh; */
+  color: #000;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+
+.button a {
+  font-decoration: none;
+}
+
+
+.field:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.register {
+  margin-top: 10rem;
+  background: white;
+  border-radius: 10px;
+}
+
+.left,
+.right {
+  padding: 4.5rem;
+}
+
+.left {
+  border-right: 5px solid var(--background);
+}
+
+.left .title {
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.left .colored {
+  color: var(--brandColor);
+  font-weight: 500;
+  margin-top: 1rem !important;
+  letter-spacing: -1px;
+}
+
+.left p {
+  font-size: 1.15rem;
+}
+
+.right .title {
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.right .description {
+  margin-top: 1rem;
+  margin-bottom: 1rem !important;
+  color: black;
+  font-size: 1.15rem;
+}
+
+.right small {
+  color: black;
+}
+
+input {
+  font-size: 1rem;
+}
+
+input:focus {
+  border-color: var(--brandColor) !important;
+  box-shadow: 0 0 0 1px var(--brandColor) !important;
+}
+
+.fab,
+.fas {
+  color: var(--textLight);
+  margin-right: 1rem;
+}
+
+.chango {
+  font-family: 'Chango', cursive;
+  /* font-size: 1em; */
+  /* margin-top: 50px; */
+}
+
+.apple {
+  font-family: 'Homemade Apple', cursive;
+  color: #8aebde;
+  font-size: 1.5em;
+}
+
+.nunito {
+  font-family: 'Nunito', sans-serif;
+  font-decoration: none;
+}
+
+.fujibg {
+  background-image: url("fuji.png");
+  background-repeat: no-repeat;
+background-position: bottom;
+}
+
+.towerbg {
+  background-image: url("tower.png");
+  background-repeat: no-repeat;
+background-position: bottom;
+}

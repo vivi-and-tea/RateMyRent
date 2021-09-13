@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rate My Rent TOKYO</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/15181efa86.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chango&family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+
+<!-- Animation -->
+<script src="static/script.js"></script>
+<link href="static/styles.css" rel="stylesheet">
+
+
+
+  </head>
+
+<body class="animate-in">
+    <section class="container">
+      <div class="columns is-multiline">
+        <div class="column is-8 is-offset-2 register">
+          <div class="columns">
+            <div class="column left">
+              <h1 class="title is-size-2-desktop chango">Rate My Rent</h1>
+              <hr>
+              <p class="has-text-justified">Input your target area, room size,
+                and estimated monthly take-home pay, and we will rate your rent!
+                <br>
+                <hr>
+                <br>
+                <div class="control">
+                  Estimated Monthly Take-Home Pay:
+                  <br><span class="number-rent" style="font-size: 2em">¥ <input class="input text-form"  style="width: 80px;" type="number" placeholder="">0,000</span>
+                  <br>
+                  <br>
+                  Target Area:<br>
+                  <div class="select">
+                    <select>
+                      <option value="Edogawa">Edogawa</option>
+                      <option value="Katsushika">Katsushika</option>
+                      <option value="Adachi">Adachi</option>
+                      <option value="Nerima">Nerima</option>
+                      <option value="Itabashi">Itabashi</option>
+                      <option value="Arakawa">Arakawa</option>
+                      <option value="Kita">Kita</option>
+                      <option value="Toshima">Toshima</option>
+                      <option value="Suginami">Suginami</option>
+                      <option value="Nakano">Nakano</option>
+                      <option value="Shibuya">Shibuya</option>
+                      <option value="Setagaya">Setagaya</option>
+                      <option value="Ota">Ota</option>
+                      <option value="Meguro">Meguro</option>
+                      <option value="Shinagawa">Shinagawa</option>
+                      <option value="Koto">Koto</option>
+                      <option value="Sumida">Sumida</option>
+                      <option value="Taito">Taito</option>
+                      <option value="Bunkyo">Bunkyo</option>
+                      <option value="Shinjuku">Shinjuku</option>
+                      <option value="Minato">Minato</option>
+                      <option value="Chuo">Chuo</option>
+                      <option value="Chiyoda">Chiyoda</option>
+
+                    </select>
+                  </div>
+                  <br>
+                  <br>Room Size:<br>
+                  <div class="select">
+                    <select>
+                      <option value="oneroom">1 room</option>
+                      <option value="onek">1K/1DK/1LDK</option>
+                      <option value="twok">2K/2DK/2LDK</option>
+                      <option value="threek">3K/3DK/3LDK</option>
+                      <option value="fourk">4K/4DK/4LDK</option>
+                    </select>
+                    <br>
+                    <div class="buttons">
+                      <button class="button is-primary">Primary</button>
+
+                      <br><br>
+                      <p>
+
+                    </div>
+                  </div>
+
+<br><br><br>
+                </div>
+
+
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <style>
+    :root {
+      --brandColor: hsl(166, 67%, 51%);
+      --background: rgb(247, 247, 247);
+      --textDark: hsla(0, 0%, 0%, 0.66);
+      --textLight: hsla(0, 0%, 0%, 0.33);
+    }
+
+    body {
+      background: var(--background);
+      height: 100vh;
+      /* color: var(--textDark); */
+      color: #000;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .field:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    .register {
+      margin-top: 10rem;
+      background: white;
+      border-radius: 10px;
+    }
+
+    .left,
+    .right {
+      padding: 4.5rem;
+    }
+
+    .left {
+      border-right: 5px solid var(--background);
+    }
+
+    .left .title {
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
+
+    .left .colored {
+      color: var(--brandColor);
+      font-weight: 500;
+      margin-top: 1rem !important;
+      letter-spacing: -1px;
+    }
+
+    .left p {
+      font-size: 1.15rem;
+    }
+
+    .right .title {
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .right .description {
+      margin-top: 1rem;
+      margin-bottom: 1rem !important;
+      color: black;
+      /* color: var(--textLight); */
+      font-size: 1.15rem;
+    }
+
+    .right small {
+      color: black;
+    }
+
+    input {
+      font-size: 1rem;
+    }
+
+    input:focus {
+      border-color: var(--brandColor) !important;
+      box-shadow: 0 0 0 1px var(--brandColor) !important;
+    }
+
+    .fab,
+    .fas {
+      color: var(--textLight);
+      margin-right: 1rem;
+    }
+
+    .chango {
+      font-family: 'Chango', cursive;
+      /* font-size: 1em; */
+      /* margin-top: 50px; */
+    }
+
+    .apple {
+      font-family: 'Homemade Apple', cursive;
+      color: #8aebde;
+      font-size: 1.5em;
+    }
+
+    .nunito {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .fujibg {
+      background-image: url("fuji.png");
+      background-repeat: no-repeat;
+    background-position: bottom;
+    }
+
+    .towerbg {
+      background-image: url("tower.png");
+      background-repeat: no-repeat;
+    background-position: bottom;
+    }
+
+  </style>
+
+
+
+</html>

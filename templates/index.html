@@ -1,16 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+
 {% extends "base.html" %}
 
 {% block content %}
 
-    <p> Testing a template. Reload?
-      <br><br>
-      <p>{% for city in places %}
-      <p>{{ city.city }}
-      <p>{{ city.oneroom }}
+<body class="">
+    <section class="container">
+      <div class="columns is-multiline">
+        <div class="column is-8 is-offset-2 register">
+          <div class="columns">
+            <div class="column left">
+              <h1 class="title is-size-2-desktop chango">Rate My Rent</h1>
+              <h2 class="subtitle colored is-4">Does your Tokyo rent add up? </h2>
+              <hr>
+              <p class="has-text-justified">Living in Tokyo isn't cheap, but it doesn't have to break the bank.<br><br>
+              <p class="has-text-justified">Find out how your projected rent checks out-- or if there's somewhere more friendly to your budget.</p>
+            </div>
+            <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child notification fujibg">
+                <p class="title chango is-size-4-desktop has-text-centered">Rate Me</p>
+                <p class="is-size-6 has-text-centered nunito">I already know where I want to live.</p>
+                <br>
+                <p><center> <a href="test2.html" class="button is-primary is-link">Get a Rating</a></center>
+              </article>
+              <article class="tile is-child notification towerbg">
+                <p class="title chango is-size-4-desktop has-text-centered">Recommend Me</p>
+                <p class="is-size-6 has-text-centered nunito">I'm looking for a recommendation.</p>
+                <br>
+                <p><center> <a href="test2.html" class="button is-primary is-link">Recommend Me</a></center>
+              </article>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 
-      {% endfor %}
-
-
-      <!-- <img src="{{ url_for('static', filename='watercolorav.png') }}"> -->
-
-{% endblock %}
+  {% endblock %}
