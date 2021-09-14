@@ -1,6 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, request
 from flask_sqlalchemy import SQLAlchemy
-import pandas as pd
 import os
 from secretsecret import POSTGRES_ADD
 
@@ -39,20 +38,22 @@ def rent_finder(place, room_type):
         return place.fourk
 
 def rate_rent(percent):
-    if percent <= 25:
-        return "A+"
-    elif percent <= 30:
-        return "A"
-    elif percent <= 33:
-        return "B+"
-    elif percent <= 35:
+    if percent < 27:
         return "B"
+    elif percent <= 30:
+        return "S"
+    elif percent <= 35:
+        return "A"
     elif percent <= 40:
-        return "B-"
+        return "B"
     elif percent <= 45:
         return "C"
-    elif percent <= 45:
-        return "C-"
+    elif percent <= 50:
+        return "D"
+    elif percent <= 60:
+        return "E"
+    elif percent >= 60:
+        return "F"
 
 
 
@@ -61,18 +62,31 @@ def rate_rent(percent):
 def home():
     return render_template('index.html')
 
-@app.route('/rate')
+@app.route('/rate', methods=['POST', 'GET'])
 def rate():
 
-    salary = 24
-    room_type = "twok"
-    user_city = 3
-    place = Places.query.get(user_city)
-    rent = rent_finder(place, room_type)
-    percent = int((rent / salary) * 100)
-    grade = rate_rent(percent)
+    if request.method == 'POST':
+        salary = float(request.form.get('salary'))
+        room_type = request.form.get('room_type')
+        user_city = request.form.get('user_city')
+        place = Places.query.get(user_city)
+        rent = rent_finder(place, room_type)
+        percent = int((rent / salary) * 100)
+        grade = rate_rent(percent)
+        if room_type == "oneroom":
+            room = "one room"
+        elif room_type == "onek":
+            room = "1K/1DK/1LDK"
+        elif room_type == "twok":
+            room = "2K/2DK/2LDK"
+        elif room_type == "threek":
+            room = "3K/3DK/3LDK"
+        elif room_type == "fourk":
+            room = "4K/4DK/4LDK"
+        return render_template('result.html', place=place, rent=rent, percent=percent, grade=grade, room=room)
 
-    return render_template('rate.html', place=place, rent=rent, percent=percent, grade=grade)
+    else:
+        return render_template('rate.html')
 
 @app.route("/recommend")
 def recommend():

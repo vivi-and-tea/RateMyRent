@@ -28,6 +28,9 @@
 }
 
 
+html. body {
+  max-width: 100%;
+}
 
 body {
   background: var(--background);
@@ -37,13 +40,18 @@ body {
 }
 
 
-
-
+.column {
+  max-width: 100%;
+}
 
 .button a {
   font-decoration: none;
 }
 
+.grade-superbig {
+  font-size: 12vw;
+  margin-top: -10%;
+}
 
 .field:not(:last-child) {
   margin-bottom: 1rem;
@@ -117,10 +125,8 @@ input:focus {
   /* margin-top: 50px; */
 }
 
-.apple {
-  font-family: 'Homemade Apple', cursive;
-  color: #8aebde;
-  font-size: 1.5em;
+.bowlby {
+font-family: 'Bowlby One SC', cursive;
 }
 
 .nunito {
@@ -138,4 +144,16 @@ background-position: bottom;
   background-image: url("tower.png");
   background-repeat: no-repeat;
 background-position: bottom;
+}
+
+@media (max-width: 550px) {
+
+  body, html {
+    overflow-x: hidden;
+  }
+
+  .grade-superbig {
+    font-size: 50vw;
+    margin-top: -10%;
+  }
 }
