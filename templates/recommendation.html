@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+
+  </head>
+
+<body class="animate-in">
+    <section class="container">
+      <div class="columns is-multiline">
+        <div class="column is-8 is-offset-2 register">
+          <div class="columns">
+            <div class="column left">
+              <!-- <h1 class="title is-size-2-desktop chango">Rate My Rent</h1> -->
+              <h2 class="subtitle colored is-4">Our recommendation is...</h2>
+
+              {% if minimum_acceptable_choice %}
+                <div class="city-superbig">
+                  <center><strong>{{ minimum_acceptable_choice['City'] }}</strong></center>
+                </div>
+                <br>
+
+                <p class="has-text-justified">For a {{ room_type }} in {{ minimum_acceptable_choice['City'] }}, rent would be around {{ minimum_acceptable_choice['Percent'] }}% of your take-home pay.
+
+                  {% elif message %}
+                  {{ message }}
+
+                  {% endif %}
+                  <br><br>
+
+                  <center><a href="{{ url_for('recommend') }}"><h2 class="again">Try again?</h2></a></center>
+                  <br><br>
+                  <p> <a href="{{ url_for('about') }}"<i class="info-request">> About the recommendation.</a></i>
+              <hr>
+              <a href="{{ url_for('home') }}"><ion-icon size="large" name="arrow-back-outline"></ion-icon>
+
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+
+  {% endblock %}

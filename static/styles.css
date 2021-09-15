@@ -39,6 +39,13 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+a {
+  color: #37a695;
+}
+
+h2 {
+  font-size: 1.5vw;
+}
 
 .column {
   max-width: 100%;
@@ -51,7 +58,14 @@ body {
 .grade-superbig {
   font-size: 12vw;
   margin-top: -10%;
+  color: ##37a695;
 }
+
+.city-superbig {
+  font-size: 8vw;
+  color: ##37a695;
+}
+
 
 .field:not(:last-child) {
   margin-bottom: 1rem;
@@ -146,6 +160,14 @@ background-position: bottom;
 background-position: bottom;
 }
 
+.info-request {
+  font-size: .8vw;
+}
+
+.again {
+  font-size: 2vw;
+}
+
 @media (max-width: 550px) {
 
   body, html {
@@ -155,5 +177,23 @@ background-position: bottom;
   .grade-superbig {
     font-size: 50vw;
     margin-top: -10%;
+    color: ##37a695;
+  }
+
+  .city-superbig {
+    font-size: 10vw;
+    color: ##37a695;
+  }
+
+  .again {
+    font-size: 7vw;
+  }
+
+  .info-request {
+    font-size: 4vw;
+  }
+
+  h2 {
+    font-size: 6vw;
   }
 }

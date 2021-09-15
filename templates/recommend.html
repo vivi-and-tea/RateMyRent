@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  </head>
+
+<body class="animate-in">
+    <section class="container">
+      <div class="columns is-multiline">
+        <div class="column is-8 is-offset-2 register">
+          <div class="columns">
+            <div class="column left">
+              <h1 class="title is-size-2-desktop chango">Recommend Me</h1>
+              <hr>
+              <p class="has-text-justified">Input your room size
+                and estimated monthly take-home pay, and we will recommend an area of Tokyo for you.
+                <br>
+                <hr>
+                <br>
+
+
+                <form method="POST" id="form">
+                <div class="control">
+                  {% if error_message %}
+                  <p style="color:red"> {{ error_message }}</p>
+                    {% endif %}
+                  Estimated Monthly Take-Home Pay:
+                  <br><span class="number-rent" style="font-size: 2em">¥ <input class="input text-form"  name="salary" style="width: 80px;" type="number" placeholder="">0,000</span>
+                  <br>
+                  <br>Room Size:<br>
+                  <div class="select">
+                    <select name="room_type">
+                      <option value="oneroom">One room</option>
+                      <option value="onek">1K/1DK/1LDK</option>
+                      <option value="twok">2K/2DK/2LDK</option>
+                      <option value="threek">3K/3DK/3LDK</option>
+                      <option value="fourk">4K/4DK/4LDK</option>
+                    </select>
+                    <br>
+                    <div class="buttons">
+                      <button type="submit" id="form" class="button is-primary">Submit</button>
+
+
+</form>
+                      <br><br>
+                      <p>
+
+                    </div>
+                  </div>
+
+<br><br><br>
+                </div>
+
+
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+
+{% endblock %}

@@ -10,7 +10,7 @@
         <div class="column is-8 is-offset-2 register">
           <div class="columns">
             <div class="column left">
-              <h1 class="title is-size-2-desktop chango">Rate My Rent</h1>
+              <h1 class="title is-size-2-desktop chango">Rate Me</h1>
               <hr>
               <p class="has-text-justified">Input your target area, room size,
                 and estimated monthly take-home pay, and we will rate your rent!
@@ -22,6 +22,9 @@
                 <form method="POST" id="form">
                 <div class="control">
                   Estimated Monthly Take-Home Pay:
+                  {% if error_message %}
+                  <p style="color:red"> {{ error_message }}</p>
+                    {% endif %}
                   <br><span class="number-rent" style="font-size: 2em">¥ <input class="input text-form"  name="salary" style="width: 80px;" type="number" placeholder="">0,000</span>
                   <br>
                   <br>
@@ -41,14 +44,14 @@
                       <option value=11>Shibuya</option>
                       <option value=12>Setagaya</option>
                       <option value=13>Ota</option>
-                      <option value=14>>Meguro</option>
+                      <option value=14>Meguro</option>
                       <option value=15>Shinagawa</option>
                       <option value=16>Koto</option>
                       <option value=17>Sumida</option>
                       <option value=18>Taito</option>
                       <option value=19>Bunkyo</option>
                       <option value=20>Shinjuku</option>
-                      <option value=21>>Minato</option>
+                      <option value=21>Minato</option>
                       <option value=22>Chuo</option>
                       <option value=23>Chiyoda</option>
 

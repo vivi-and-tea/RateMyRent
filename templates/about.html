@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  </head>
+
+<body class="animate-in">
+    <section class="container">
+      <div class="columns is-multiline">
+        <div class="column is-8 is-offset-2 register">
+          <div class="columns">
+            <div class="column left">
+              <h1 class="title is-size-2-desktop chango">About</h1>
+              <hr>
+              <p class="has-text-justified">This website is a project made for fun
+                by <a href="https://github.com/vivi-and-tea"><ion-icon name="logo-github"></ion-icon>Valerie Yamanaka</a> for her portfolio.
+                It was created in Atom using Python and Flask, using Bulma for frontend
+                support and basing it's design on <a href="https://bulmatemplates.github.io/bulma-templates/templates/register.html">this</a>
+                Bulma template, with original art.
+                <br><br>
+                <p class="has-text-justified">It is for entertainment purposes only and not meant to be seriously used to
+                choose where to live.
+<br><br>
+                <p class="has-text-justified">All average rents used are from <a href="https://suumo.jp/chintai/soba/tokyo/">Suumo's data</a>, aggregated from their own listings.
+                  They do not claim accuracy for this data.
+
+                <hr>
+                <h2 class="chango">Rating</h2>
+<br><br>
+                <p class="has-text-justified"> Ratings are given based on the percentage the average rent would
+                  by the estimated monthly salary, assuming around 30% as the gold standard
+                  (S rank), and over 60 as being a fail (F) rating.
+
+                  <hr>
+                  <h2 class="chango">Recommendations</h2>
+<br><br>
+                  <p class="has-text-justified"> Recommendations are also based
+                    on the salary to rent percentage, and compares all rents across
+                    the city to find the lowest rent that is about 25% but below 50% of the estimated monthly salary.
+                      <br><br>
+                      <p>
+                        <hr>
+                        <a href="{{ url_for('home') }}"><ion-icon size="large" name="arrow-back-outline"></ion-icon>
+                    </div>
+                  </div>
+
+<br><br><br>
+                </div>
+
+
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+
+{% endblock %}

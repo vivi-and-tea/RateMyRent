@@ -62,67 +62,96 @@ def rate_rent(percent):
 def home():
     return render_template('index.html')
 
+@app.route("/about")
+def about():
+    return render_template('about.html')
+
 @app.route('/rate', methods=['POST', 'GET'])
 def rate():
 
     if request.method == 'POST':
-        salary = float(request.form.get('salary'))
-        room_type = request.form.get('room_type')
-        user_city = request.form.get('user_city')
-        place = Places.query.get(user_city)
-        rent = rent_finder(place, room_type)
-        percent = int((rent / salary) * 100)
-        grade = rate_rent(percent)
-        if room_type == "oneroom":
-            room = "one room"
-        elif room_type == "onek":
-            room = "1K/1DK/1LDK"
-        elif room_type == "twok":
-            room = "2K/2DK/2LDK"
-        elif room_type == "threek":
-            room = "3K/3DK/3LDK"
-        elif room_type == "fourk":
-            room = "4K/4DK/4LDK"
-        return render_template('result.html', place=place, rent=rent, percent=percent, grade=grade, room=room)
+        salary = request.form.get('salary')
+        if not salary:
+            error_message = "Must include a salary!"
+            return render_template('rate.html', error_message=error_message)
+        else:
+            salary = float(request.form.get('salary'))
+            room_type = request.form.get('room_type')
+            user_city = request.form.get('user_city')
+            place = Places.query.get(user_city)
+            rent = rent_finder(place, room_type)
+            percent = int((rent / salary) * 100)
+            grade = rate_rent(percent)
+            if room_type == "oneroom":
+                room = "one room"
+            elif room_type == "onek":
+                room = "1K/1DK/1LDK"
+            elif room_type == "twok":
+                room = "2K/2DK/2LDK"
+            elif room_type == "threek":
+                room = "3K/3DK/3LDK"
+            elif room_type == "fourk":
+                room = "4K/4DK/4LDK"
+            return render_template('result.html', place=place, rent=rent, percent=percent, grade=grade, room=room)
 
     else:
         return render_template('rate.html')
 
-@app.route("/recommend")
+@app.route("/recommend", methods=['POST', 'GET'])
 def recommend():
-    salary = 20
-    room_type = "onek"
-    list = []
+    if request.method == 'POST':
 
-    for place in places:
+        salary = request.form.get('salary')
 
-        rent = rent_finder(place, room_type)
-        percent = int((rent / salary) * 100)
-
-
-        if percent < 50 and percent > 20:
-            list.append({'City': place.city, 'Rent': rent, 'Percent': percent})
+        if not salary:
+            error_message = "Must include a salary!"
+            return render_template('recommend.html', error_message=error_message)
         else:
-            pass
+            salary = float(request.form.get('salary'))
+            room_type = request.form.get('room_type')
+            list = []
 
-    message = ""
-    mini = ""
-    if len(list):
-        mini = min(list, key=lambda x:x['Percent'])
-    else:
-        message="Sorry, we couldn't find a good fit. Try changing your preferred room size for different options."
+            for place in places:
 
-    context = {}
-    context['places'] = places
-    context['room_type'] = room_type
-    context['salary'] = salary
+                rent = rent_finder(place, room_type)
+                percent = int((rent / salary) * 100)
 
-    if mini:
-        context['mini'] = mini
-    if message:
-        context['message'] = message
 
-    return render_template('recommend.html', **context)
+                if percent < 50 and percent > 25:
+                    list.append({'City': place.city, 'Rent': rent, 'Percent': percent})
+                else:
+                    pass
+
+            message = ""
+            minimum_acceptable_choice = ""
+            if len(list):
+                minimum_acceptable_choice = min(list, key=lambda x:x['Percent'])
+            else:
+                message="Sorry, we couldn't find a good fit. Try changing your preferred room size for different options."
+
+            if room_type == "oneroom":
+                room = "one room"
+            elif room_type == "onek":
+                room = "1K/1DK/1LDK"
+            elif room_type == "twok":
+                room = "2K/2DK/2LDK"
+            elif room_type == "threek":
+                room = "3K/3DK/3LDK"
+            elif room_type == "fourk":
+                room = "4K/4DK/4LDK"
+
+            context = {}
+            context['places'] = places
+            context['room_type'] = room
+            context['salary'] = salary
+
+            if minimum_acceptable_choice:
+                context['minimum_acceptable_choice'] = minimum_acceptable_choice
+            if message:
+                context['message'] = message
+            return render_template('recommendation.html', **context)
+
+    return render_template('recommend.html')
 
 
 
