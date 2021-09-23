@@ -72,27 +72,31 @@ def rate():
     if request.method == 'POST':
         salary = request.form.get('salary')
         if not salary:
-            error_message = "Must include a salary!"
+            error_message = "Must include a salary."
             return render_template('rate.html', error_message=error_message)
         else:
             salary = float(request.form.get('salary'))
-            room_type = request.form.get('room_type')
-            user_city = request.form.get('user_city')
-            place = Places.query.get(user_city)
-            rent = rent_finder(place, room_type)
-            percent = int((rent / salary) * 100)
-            grade = rate_rent(percent)
-            if room_type == "oneroom":
-                room = "one room"
-            elif room_type == "onek":
-                room = "1K/1DK/1LDK"
-            elif room_type == "twok":
-                room = "2K/2DK/2LDK"
-            elif room_type == "threek":
-                room = "3K/3DK/3LDK"
-            elif room_type == "fourk":
-                room = "4K/4DK/4LDK"
-            return render_template('result.html', place=place, rent=rent, percent=percent, grade=grade, room=room)
+            if salary > float(0.0):
+                room_type = request.form.get('room_type')
+                user_city = request.form.get('user_city')
+                place = Places.query.get(user_city)
+                rent = rent_finder(place, room_type)
+                percent = int((rent / salary) * 100)
+                grade = rate_rent(percent)
+                if room_type == "oneroom":
+                    room = "one room"
+                elif room_type == "onek":
+                    room = "1K/1DK/1LDK"
+                elif room_type == "twok":
+                    room = "2K/2DK/2LDK"
+                elif room_type == "threek":
+                    room = "3K/3DK/3LDK"
+                elif room_type == "fourk":
+                    room = "4K/4DK/4LDK"
+                return render_template('result.html', place=place, rent=rent, percent=percent, grade=grade, room=room)
+            else:
+                error_message = "Must include a positive salary."
+                return render_template('rate.html', error_message=error_message)
 
     else:
         return render_template('rate.html')
@@ -100,56 +104,59 @@ def rate():
 @app.route("/recommend", methods=['POST', 'GET'])
 def recommend():
     if request.method == 'POST':
-
         salary = request.form.get('salary')
-
         if not salary:
-            error_message = "Must include a salary!"
+            error_message = "Must include a salary."
             return render_template('recommend.html', error_message=error_message)
         else:
             salary = float(request.form.get('salary'))
-            room_type = request.form.get('room_type')
-            list = []
+            if salary > float(0.0):
+                room_type = request.form.get('room_type')
+                list = []
 
-            for place in places:
+                for place in places:
 
-                rent = rent_finder(place, room_type)
-                percent = int((rent / salary) * 100)
+                    rent = rent_finder(place, room_type)
+                    percent = int((rent / salary) * 100)
 
 
-                if percent < 50 and percent > 25:
-                    list.append({'City': place.city, 'Rent': rent, 'Percent': percent})
+                    if percent < 50 and percent > 25:
+                        list.append({'City': place.city, 'Rent': rent, 'Percent': percent})
+                    else:
+                        pass
+
+                message = ""
+                minimum_acceptable_choice = ""
+                if len(list):
+                    minimum_acceptable_choice = min(list, key=lambda x:x['Percent'])
                 else:
-                    pass
+                    message="Sorry, we couldn't find a good fit. Try changing your preferred room size for different options."
 
-            message = ""
-            minimum_acceptable_choice = ""
-            if len(list):
-                minimum_acceptable_choice = min(list, key=lambda x:x['Percent'])
+                if room_type == "oneroom":
+                    room = "one room"
+                elif room_type == "onek":
+                    room = "1K/1DK/1LDK"
+                elif room_type == "twok":
+                    room = "2K/2DK/2LDK"
+                elif room_type == "threek":
+                    room = "3K/3DK/3LDK"
+                elif room_type == "fourk":
+                    room = "4K/4DK/4LDK"
+
+                context = {}
+                context['places'] = places
+                context['room_type'] = room
+                context['salary'] = salary
+
+
+                if minimum_acceptable_choice:
+                    context['minimum_acceptable_choice'] = minimum_acceptable_choice
+                if message:
+                    context['message'] = message
+                return render_template('recommendation.html', **context)
             else:
-                message="Sorry, we couldn't find a good fit. Try changing your preferred room size for different options."
-
-            if room_type == "oneroom":
-                room = "one room"
-            elif room_type == "onek":
-                room = "1K/1DK/1LDK"
-            elif room_type == "twok":
-                room = "2K/2DK/2LDK"
-            elif room_type == "threek":
-                room = "3K/3DK/3LDK"
-            elif room_type == "fourk":
-                room = "4K/4DK/4LDK"
-
-            context = {}
-            context['places'] = places
-            context['room_type'] = room
-            context['salary'] = salary
-
-            if minimum_acceptable_choice:
-                context['minimum_acceptable_choice'] = minimum_acceptable_choice
-            if message:
-                context['message'] = message
-            return render_template('recommendation.html', **context)
+                error_message = "Must include a positive salary."
+                return render_template('recommend.html', error_message=error_message)
 
     return render_template('recommend.html')
 
