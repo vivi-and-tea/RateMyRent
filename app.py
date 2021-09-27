@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 import os
-from secretsecret import POSTGRES_ADD
+# from secretsecret import POSTGRES_ADD
 
 app = Flask(__name__)
 
@@ -164,4 +164,4 @@ def recommend():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
